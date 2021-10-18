@@ -1,5 +1,5 @@
 <h1 align="center">
-	✏️ ft_printf
+	✏️ push_swap
 </h1>
 
 <p align="center">
@@ -31,8 +31,8 @@ the lowest possible number of actions. To succeed you’ll have to manipulate va
 types of algorithms and choose the one (of many) most appropriate solution for an
 optimized data sorting._
 
-	The Push_swap project is a very simple and highly effective algorithm project: data will need to be sorted. You have at your disposal a set of int values, 2 stacks and a set of instructions to manipulate both stacks. Your goal? Write a program in C called push_swap which calculates and displays on the standard output the smallest program using Push_swap instruction language that sorts the integer arguments received.  
-
+	This project consists of coding a program that finds the lowest possible number of moves to
+	sort a random list of integers using 2 stacks and a limited set of operations  
 
 For more detailed information, look at the [**subject of this project**](https://github.com/Surfi89/42cursus/tree/main/Subject%20PDFs).
 
