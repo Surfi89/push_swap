@@ -95,9 +95,3 @@ Shift down all elements of the stack by one; the last element becomes the first.
 * **`rra`** - reverse rotate stack a.
 * **`rrb`** - reverse rotate stack b.
 * **`rrr`** - `rra` and `rrb` at the same time.
-
-## 📋 Testing
-
-You can use this third party tester to fully test the project:
-
-* [Tripouille/printfTester](https://github.com/Tripouille/printfTester)
