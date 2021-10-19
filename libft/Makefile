@@ -6,14 +6,14 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2021/10/19 13:20:26 by ajordan-         ###   ########.fr        #
+#    Updated: 2021/10/20 01:56:14 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 
 NAME		=	libft.a
-INCLUDES	=	include/
+INCLUDES	=	includes/
 SRCS_DIR 	=	src/
 OBJS_DIR	=	obj/
 CC			=	gcc
@@ -109,6 +109,7 @@ fclean:		clean
 			@echo "$(CYAN)Libft executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
+			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
 
 norm:
 	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
