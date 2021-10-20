@@ -6,18 +6,19 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2021/10/18 13:02:25 by ajordan-         ###   ########.fr        #
+#    Updated: 2021/10/20 11:25:07 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
-INCLUDES	= includes
+INCLUDE		= include
 LIBFT		= libft
-SRCS_DIR	= src/
-OBJS_DIR	= bin/
+SRC_DIR		= src/
+OBJ_DIR		= obj/
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -I
 RM			= rm -f
+AR			= ar rcs
 
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
@@ -31,37 +32,43 @@ WHITE = \033[0;97m
 
 SRC_FILES	= 
 
-SRCS 		= $(addprefix $(SRCS_DIR), $(SRC_FILES))
-OBJS 		= $(SRC_FILES:.c=.o) 
-OBJS_PREFIX	= $(addprefix $(OBJS_DIR), $(OBJS))
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-all:			$(NAME)
+OBJF		=	.cache_exists
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-				@mkdir -p $(OBJS_DIR)
-				@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-				@$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
+all:		$(NAME)
 
-$(NAME):		$(OBJS_PREFIX) $(OBJS_DIR) $(INCLUDES)
-				@make -C $(LIBFT)
-				@cp libft/libft.a .
-				@mv libft.a $(NAME)
-				@$(CC) $(CFLAGS) -I $(INCLUDES) -o $(NAME) $(OBJS_PREFIX)
-				@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
+$(NAME):	$(OBJ)
+			@make -C $(LIBFT)
+			@cp libft/libft.a .
+			@mv libft.a $(NAME)
+			@$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJ)
+			@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+$(OBJF):
+			@mkdir -p $(OBJ_DIR)
 
 clean:
-				@$(RM) -r $(OBJS_DIR)
-				@make clean -C $(LIBFT)
-				@echo "$(BLUE)push_swap binary files cleaned!$(DEF_COLOR)"
-				@echo "$(BLUE)libft binary files cleaned!$(DEF_COLOR)"
+			@$(RM) -rf $(OBJ_DIR)
+			@make clean -C $(LIBFT)
+			@echo "$(BLUE)push_swap object files cleaned!$(DEF_COLOR)"
+			@echo "$(BLUE)libft object files cleaned!$(DEF_COLOR)"
 
-fclean:			clean
-				@$(RM) $(NAME)
-				@$(RM) $(LIBFT)/libft.a
-				@echo "$(CYAN)push_swap executable files cleaned!$(DEF_COLOR)"
-				@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+fclean:		clean
+			@$(RM) -f $(NAME)
+			@$(RM) -f $(LIBFT)/libft.a
+			@echo "$(CYAN)push_swap executable files cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
-re:				fclean all
-				@echo "$(GREEN)Cleaned and rebuilt everything for push_swap!$(DEF_COLOR)"
+re:			fclean all
+			@echo "$(GREEN)Cleaned and rebuilt everything for push_swap!$(DEF_COLOR)"
 
-.PHONY:			all clean fclean re
+norm:
+			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+
+.PHONY:		all clean fclean re norm
