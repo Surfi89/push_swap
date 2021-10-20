@@ -6,16 +6,16 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2021/10/20 01:56:14 by ajordan-         ###   ########.fr        #
+#    Updated: 2021/10/20 02:34:43 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 
 NAME		=	libft.a
-INCLUDES	=	includes/
-SRCS_DIR 	=	src/
-OBJS_DIR	=	obj/
+INCLUDE	=	include/
+SRC_DIR 	=	src/
+OBJ_DIR	=	obj/
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -I
 RM			=	rm -f
@@ -71,37 +71,37 @@ SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))
 SRC_FILES+=$(addprefix $(GNL_DIR),$(GNL))
 SRC_FILES+=$(addprefix $(FTPRINTF_DIR),$(FTPRINTF))
 
-SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 ###
 
-OBJSF		=	.cache_exists
+OBJF		=	.cache_exists
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
-			@$(AR) $(NAME) $(OBJS)
+$(NAME):	$(OBJ)
+			@$(AR) $(NAME) $(OBJ)
 			@ranlib $(NAME)
 			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(OBJSF):
-			@mkdir $(OBJS_DIR)
-			@mkdir $(OBJS_DIR)$(FTIS_DIR)
-			@mkdir $(OBJS_DIR)$(FTMEM_DIR)
-			@mkdir $(OBJS_DIR)$(FTPUT_DIR)
-			@mkdir $(OBJS_DIR)$(FTTO_DIR)
-			@mkdir $(OBJS_DIR)$(FTSTR_DIR)
-			@mkdir $(OBJS_DIR)$(FTLST_DIR)
-			@mkdir $(OBJS_DIR)$(GNL_DIR)
-			@mkdir $(OBJS_DIR)$(FTPRINTF_DIR)
+$(OBJF):
+			@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTIS_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTMEM_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTPUT_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTTO_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTSTR_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTLST_DIR)
+			@mkdir -p $(OBJ_DIR)$(GNL_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTPRINTF_DIR)
 clean:
-			@$(RM) -rf $(OBJS_DIR)
-			@$(RM) -f $(OBJSF)
+			@$(RM) -rf $(OBJ_DIR)
+			@$(RM) -f $(OBJF)
 			@echo "$(BLUE)Libft objects files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
@@ -112,6 +112,6 @@ re:			fclean all
 			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
 
 norm:
-	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
+	@norminette $(SRC) $(INCLUDE) | grep -v Norme -B1 || true
 
 .PHONY:		all clean fclean re norm
