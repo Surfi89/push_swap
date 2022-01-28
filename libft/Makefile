@@ -6,16 +6,16 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2021/10/20 02:34:43 by ajordan-         ###   ########.fr        #
+#    Updated: 2021/10/22 13:06:53 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 
 NAME		=	libft.a
-INCLUDE	=	include/
+INCLUDE		=	include/
 SRC_DIR 	=	src/
-OBJ_DIR	=	obj/
+OBJ_DIR		=	obj/
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -I
 RM			=	rm -f
@@ -112,6 +112,6 @@ re:			fclean all
 			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
 
 norm:
-	@norminette $(SRC) $(INCLUDE) | grep -v Norme -B1 || true
+			@norminette $(SRC) $(INCLUDE) | grep -v Norme -B1 || true
 
 .PHONY:		all clean fclean re norm
