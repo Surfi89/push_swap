@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:08:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/01/28 14:25:12 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:39:06 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,48 +28,43 @@ int	ft_stack_len(int *stack)
 	return (len);
 }
 
-int	ft_check_sorted(int *stack, int size)
+int	ft_lowest_num(int *stack_a, int size)
+{
+	int	i;
+	int	low_pos;
+	
+	i = 1;
+	low_pos = 0;
+	while (i < size)
+	{
+		if (stack_a[i] < stack_a[low_pos])
+			low_pos = i;
+		i++;
+	}
+	return (low_pos);
+}
+
+void	ft_move_to_top(int *stack_a, int low_pos, int size)
 {
 	int	i;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	if (low_pos == 0)
+		return ;
+	if (low_pos > size - low_pos)
 	{
-		if (stack[i - 1] > stack[i])
-			return (0);
-		i++;
+		while (i < size - low_pos)
+		{	
+			ft_rra(stack_a, size);
+			i++;
+		}
 	}
-	return (1);
-}
-
-void	ft_sort_3(int *a)
-{
-	if (a[0] > a[1] && a[0] < a[2] && a[1] < a[2])
-		ft_sa(a);
-	if (a[0] > a[1] && a[0] > a[2] && a[1] > a[2])
+	else
 	{
-		ft_sa(a);
-		ft_rra(a);
+		while (i < low_pos)
+		{
+			ft_ra(stack_a, size);
+			i++;
+		}
 	}
-	if (a[0] > a[1] && a[0] > a[2] && a[1] < a[2])
-		ft_ra(a);
-	if (a[0] < a[1] && a[0] < a[2] && a[1] > a[2])
-	{
-		ft_sa(a);
-		ft_ra(a);
-	}
-	if (a[0] < a[1] && a[0] > a[2] && a[1] > a[2])
-		ft_rra(a);
-}
-
-int	ft_sort(int *stack_a, int size)
-{
-	if (ft_check_sorted(stack_a, size) == 0)
-	{
-		if (size == 2)
-			ft_sa(stack_a);
-		else if (size == 3)
-			ft_sort_3(stack_a);
-	}
-	return (0);
 }

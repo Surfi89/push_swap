@@ -6,22 +6,22 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:03:08 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/01/28 14:35:08 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:13:16 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_check_repeat(int *stack_a)
+void	ft_check_repeat(int *stack_a, int size)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 1;
-	while (stack_a[i])
+	while (i < size)
 	{
-		while (stack_a[j])
+		while (j < size)
 		{
 			if (stack_a[i] == stack_a[j])
 			{
@@ -63,7 +63,7 @@ int	ft_ps_atoi(char *str)
 }
 
 int	ft_ps_strlen(char **argv)
-	{
+{
 	int	i;
 
 	i = 0;
@@ -92,13 +92,13 @@ void	ft_push_swap(char **argv)
 		stack_a[i] = ft_ps_atoi(argv[i]);
 		i++;
 	}
-	ft_check_repeat(stack_a);
+	ft_check_repeat(stack_a, size);
 	stack_b = malloc(size * sizeof(int));
 	if (!stack_b)
 		return ;
-//	ft_pruebas(stack_a, stack_b);
-	ft_sort(stack_a, size);
-//	ft_pruebas(stack_a, stack_b);
+	ft_pruebas(stack_a, stack_b);
+	ft_sort(stack_a, stack_b, size);
+	ft_pruebas(stack_a, stack_b);
 	free(stack_a);
 	free(stack_b);
 }

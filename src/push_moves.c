@@ -6,20 +6,22 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:55:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/01/28 14:01:30 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:41:02 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_pb(int *stack_a, int *stack_b)
+void	ft_pb(int *stack_a, int *stack_b, int size, int i)
 {
 	int	tmp;
 	int	tmp2;
 	int	size_a;
 	int	size_b;
-	int	i;
-
+	int	j;
+	
+	size = 0;
+	i = 0;
 	if (stack_a[0] == '\0')
 		return ;
 	size_a = ft_stack_len(stack_a);
@@ -34,10 +36,10 @@ void	ft_pb(int *stack_a, int *stack_b)
 	}
 	if (size_b >= 1)
 		stack_b[1] = tmp;
-	i = 0;
-	while (++i < size_a)
-		stack_a[i - 1] = stack_a[i];
-	stack_a[i - 1] = '\0';
+	j = 0;
+	while (++j < size_a)
+		stack_a[j - 1] = stack_a[j];
+	stack_a[j - 1] = '\0';
 	ft_printf("pb\n");
 }
 

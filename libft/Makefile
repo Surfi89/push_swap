@@ -6,9 +6,11 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2021/10/22 13:06:53 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/01 10:21:50 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+SHELL		=	/bin/bash
 
 #Standard
 
@@ -20,18 +22,20 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -I
 RM			=	rm -f
 AR			=	ar rcs
+ECHO		=	echo -e
 
 #Colors
 
-DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+DEF_COLOR	=	\033[0;39m
+ORANGE		=	\033[0;33m
+GRAY		=	\033[0;90m
+RED			=	\033[0;91m
+GREEN		=	\033[1;92m
+YELLOW		=	\033[1;93m
+BLUE		=	\033[0;94m
+MAGENTA		=	\033[0;95m
+CYAN		=	\033[0;96m
+WHITE		=	\033[0;97m
 
 #Sources
 
@@ -78,15 +82,20 @@ OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJF		=	.cache_exists
 
+start:
+			@echo -e -n "$(YELLOW)[LIBFT]:\t$(DEF_COLOR)"
+			@echo -e -n "$(RED)[$(DEF_COLOR)"
+			@make -s all
+
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
-			@ranlib $(NAME)
-			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
+			@echo -e -n "$(RED)]$(DEF_COLOR)"
+			@$(ECHO) "$(GREEN) => 100%$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
-			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+			@echo -e -n "$(ORANGE)=$(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJF):
@@ -100,16 +109,16 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(GNL_DIR)
 			@mkdir -p $(OBJ_DIR)$(FTPRINTF_DIR)
 clean:
-			@$(RM) -rf $(OBJ_DIR)
-			@$(RM) -f $(OBJF)
-			@echo "$(BLUE)Libft objects files cleaned!$(DEF_COLOR)"
+			@$(RM) -r $(OBJ_DIR)
+			@$(RM) $(OBJF)
+			@echo -e -n "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 
 fclean:		clean
-			@$(RM) -f $(NAME)
-			@echo "$(CYAN)Libft executable files cleaned!$(DEF_COLOR)"
+			@$(RM) $(NAME)
+			@echo -e -n "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 
 re:			fclean all
-			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
+			@echo -e -n "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
 
 norm:
 			@norminette $(SRC) $(INCLUDE) | grep -v Norme -B1 || true
