@@ -6,26 +6,18 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:55:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/02 15:41:02 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 01:30:38 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_pb(int *stack_a, int *stack_b, int size, int i)
+void	ft_pb(int *stack_a, int *stack_b, int size_a, int size_b)
 {
 	int	tmp;
 	int	tmp2;
-	int	size_a;
-	int	size_b;
-	int	j;
+	int	i;
 	
-	size = 0;
-	i = 0;
-	if (stack_a[0] == '\0')
-		return ;
-	size_a = ft_stack_len(stack_a);
-	size_b = ft_stack_len(stack_b);
 	tmp = stack_b[0];
 	stack_b[0] = stack_a[0];
 	while (size_b > 1)
@@ -36,25 +28,22 @@ void	ft_pb(int *stack_a, int *stack_b, int size, int i)
 	}
 	if (size_b >= 1)
 		stack_b[1] = tmp;
-	j = 0;
-	while (++j < size_a)
-		stack_a[j - 1] = stack_a[j];
-	stack_a[j - 1] = '\0';
+	i = 1;
+	while (i < size_a)
+	{
+		stack_a[i - 1] = stack_a[i];
+		i++;
+	}
+	stack_a[i - 1] = '\0';
 	ft_printf("pb\n");
 }
 
-void	ft_pa(int *stack_b, int *stack_a)
+void	ft_pa(int *stack_b, int *stack_a, int size_a, int size_b)
 {
 	int	tmp;
 	int	tmp2;
-	int	size_a;
-	int	size_b;
 	int	i;
 
-	if (stack_b[0] == '\0')
-		return ;
-	size_a = ft_stack_len(stack_a);
-	size_b = ft_stack_len(stack_b);
 	tmp = stack_a[0];
 	stack_a[0] = stack_b[0];
 	while (size_a > 1)
@@ -65,9 +54,12 @@ void	ft_pa(int *stack_b, int *stack_a)
 	}
 	if (size_a >= 1)
 		stack_a[1] = tmp;
-	i = 0;
-	while (++i < size_b)
+	i = 1;
+	while (i < size_b)
+	{
 		stack_b[i - 1] = stack_b[i];
+		i++;
+	}
 	stack_b[i - 1] = '\0';
 	ft_printf("pa\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/02 15:37:08 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 01:33:03 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,31 @@ void	ft_sort_three(int *stack, int size)
 		ft_rra(stack, size);
 }
 
-void	ft_sort_small(int *stack_a, int *stack_b, int size)
+void	ft_sort_small(int *stack_a, int *stack_b, int size_a)
 {
-	int	i;
+	int	size_b;
 	int	low_pos;
-	int	size2;
+	int	tmp;
+	int	i;
 
-	i = 0;
-	size2 = size;
-	while (size2 - i > 3)
+	size_b = 0;
+	tmp = size_a;
+	while (tmp - size_b > 3)
 	{
-		low_pos = ft_lowest_num(stack_a, size);
-		ft_move_to_top(stack_a, low_pos, size);
-		ft_pb(stack_a, stack_b, size, i);
-		i++;
-		size--;
+		low_pos = ft_lowest_num(stack_a, size_a);
+		ft_move_to_top(stack_a, low_pos, size_a);
+		ft_pb(stack_a, stack_b, size_a, size_b);
+		size_a--;
+		size_b++;
 	}
-	ft_sort_three(stack_a, size);
-	size = size2;
-	while (i > 0)
+	ft_sort_three(stack_a, size_a);
+	i = 0;
+	while (tmp - i > 3)
 	{
-		ft_pa(stack_b, stack_a);
-		i--;
+		ft_pa(stack_b, stack_a, size_a, size_b);
+		size_a++;
+		size_b--;
+		i++;
 	}
 }
 

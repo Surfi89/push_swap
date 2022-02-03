@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:21:05 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/02 15:38:33 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 01:31:27 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_rr(int *stack_a, int *stack_b);
 void	ft_rra(int *stack_a, int size);
 void	ft_rrb(int *stack_b);
 void	ft_rrr(int *stack_a, int *stack_b);
-void	ft_pb(int *stack_a, int *stack_b, int size, int i);
-void	ft_pa(int *stack_b, int *stack_a);
+void	ft_pb(int *stack_a, int *stack_b, int size_a, int size_b);
+void	ft_pa(int *stack_b, int *stack_a, int size_a, int size_b);
 int		ft_sort(int *stack_a, int *stack_b, int size);
 int		ft_check_sorted(int *stack, int size);
 void	ft_sort_three(int *stack, int size);
