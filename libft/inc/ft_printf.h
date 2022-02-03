@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 12:00:00 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/10/19 14:51:38 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:44:57 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int		ft_printnbr(int n);
 int		ft_print_unsigned(unsigned int n);
 int		ft_print_hex(unsigned int num, const char format);
 int		ft_printpercent(void);
-
 void	ft_putstr(char *str);
 void	ft_put_ptr(uintptr_t num);
 int		ft_ptr_len(uintptr_t num);

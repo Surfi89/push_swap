@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:08:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/02 15:39:06 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:55:25 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../inc/push_swap.h"
+#include "../libft/inc/ft_printf.h"
+#include <stdlib.h>
 
 void	ft_error(void)
 {
@@ -18,21 +20,11 @@ void	ft_error(void)
 	exit (1);
 }
 
-int	ft_stack_len(int *stack)
-{
-	int	len;
-
-	len = 0;
-	while (stack[len])
-		len++;
-	return (len);
-}
-
 int	ft_lowest_num(int *stack_a, int size)
 {
 	int	i;
 	int	low_pos;
-	
+
 	i = 1;
 	low_pos = 0;
 	while (i < size)

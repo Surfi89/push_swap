@@ -6,11 +6,12 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:53:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/02 14:53:41 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:54:30 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../inc/push_swap.h"
+#include "../libft/inc/ft_printf.h"
 
 void	ft_rra(int *stack_a, int size)
 {
@@ -28,14 +29,12 @@ void	ft_rra(int *stack_a, int size)
 	ft_printf("rra\n");
 }
 
-void	ft_rrb(int *stack_b)
+void	ft_rrb(int *stack_b, int size_b)
 {
 	int	tmp;
-	int	size;
 	int	i;
 
-	size = ft_stack_len(stack_b);
-	i = size - 1;
+	i = size_b - 1;
 	tmp = stack_b[i];
 	while (i)
 	{
@@ -46,15 +45,11 @@ void	ft_rrb(int *stack_b)
 	ft_printf("rrb\n");
 }
 
-void	ft_rrr(int *stack_a, int *stack_b)
+void	ft_rrr(int *stack_a, int *stack_b, int size_a, int size_b)
 {
 	int	tmp;
-	int	size_a;
-	int	size_b;
 	int	i;
 
-	size_a = ft_stack_len(stack_a);
-	size_b = ft_stack_len(stack_b);
 	i = size_a - 1;
 	tmp = stack_a[i];
 	while (i)

@@ -6,18 +6,19 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:55:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/03 01:30:38 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:54:02 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../inc/push_swap.h"
+#include "../libft/inc/ft_printf.h"
 
 void	ft_pb(int *stack_a, int *stack_b, int size_a, int size_b)
 {
 	int	tmp;
 	int	tmp2;
 	int	i;
-	
+
 	tmp = stack_b[0];
 	stack_b[0] = stack_a[0];
 	while (size_b > 1)

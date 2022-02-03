@@ -6,11 +6,12 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:55:19 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/01/28 14:31:40 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:53:34 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../inc/push_swap.h"
+#include "../libft/inc/ft_printf.h"
 
 void	ft_pruebas(int *stack_a, int *stack_b)
 {

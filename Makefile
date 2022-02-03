@@ -6,19 +6,21 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/02 10:29:02 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/03 12:53:26 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL		=	/bin/bash
 
 NAME		= push_swap
-INCLUDE		= include
+INC			= inc
+HEADER		= -I inc
 LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -I
+CFLAGS		= -Wall -Werror -Wextra
+FSANITIZE	= -fsanitize=address -g3
 RM			= rm -f
 ECHO		= echo -e
 
@@ -33,7 +35,7 @@ MAGENTA		=	\033[0;95m
 CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
-SRC_FILES	=	push_swap ps_utils swap_moves rotation_moves rev_rot_moves \
+SRC_FILES	=	push_swap utils swap_moves rotation_moves rev_rot_moves \
 				push_moves sortage pruebas
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -55,12 +57,12 @@ $(NAME):	$(OBJ)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@$(ECHO) -n "$(YELLOW)[$(NAME)]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDE) libft.a -o $(NAME) $(OBJ)
+			@$(CC) $(CFLAGS) $(SRC) $(HEADER) libft.a -o $(NAME)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-	@echo -e -n "$(ORANGE)=$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+			@echo -e -n "$(ORANGE)=$(DEF_COLOR)"
+			@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
@@ -85,6 +87,6 @@ re:			fclean all
 
 norm:
 			@clear
-			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+			@norminette $(SRC) $(INC) $(LIBFT) | grep -v Norme -B1 || true
 
 .PHONY:		all clean fclean re norm

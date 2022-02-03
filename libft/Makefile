@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/01 10:21:50 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/03 11:52:10 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SHELL		=	/bin/bash
 #Standard
 
 NAME		=	libft.a
-INCLUDE		=	include/
+INCLUDE		=	inc/
 SRC_DIR 	=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
