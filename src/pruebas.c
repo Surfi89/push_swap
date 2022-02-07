@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:55:19 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/03 11:53:34 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/07 01:55:19 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	ft_pruebas(int *stack_a, int *stack_b)
 
 // ****** STACKS ANTES DE MOVS ***************
 
-	ft_printf("STACK A    STACK B\n-------    -------\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n", stack_a[0], stack_b[0], stack_a[1], stack_b[1], stack_a[2], stack_b[2], stack_a[3], stack_b[3], stack_a[4], stack_b[4], stack_a[5], stack_b[5], stack_a[6], stack_b[6], stack_a[7], stack_b[7]);
+	ft_printf("STACK A    STACK B\n-------    -------\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n", stack_a[0], stack_b[0], stack_a[1], stack_b[1], stack_a[2], stack_b[2], stack_a[3], stack_b[3], stack_a[4], stack_b[4], stack_a[5], stack_b[5], stack_a[6], stack_b[6], stack_a[7], stack_b[7], stack_a[8], stack_b[8], stack_a[9], stack_b[9], stack_a[10], stack_b[10], stack_a[11], stack_b[11], stack_a[12], stack_b[12], stack_a[13], stack_b[13]);
+
+//	ft_printf("STACK A    STACK B\n-------    -------\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n   %i          %i\n", stack_a[0], stack_b[0], stack_a[1], stack_b[1], stack_a[2], stack_b[2], stack_a[3], stack_b[3], stack_a[4], stack_b[4], stack_a[5], stack_b[5], stack_a[6], stack_b[6], stack_a[7], stack_b[7]);
 
 // ********** PRUEBAS MOVIMIENTO PUSH ******************
 

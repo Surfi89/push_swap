@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/03 11:57:13 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/07 01:58:59 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,6 @@ void	ft_sort_small(int *stack_a, int *stack_b, int size_a)
 	}
 }
 
-/*void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
-{
-	int	size_b;
-
-	size_b = 0;
-}*/
-
 int	ft_sort(int *stack_a, int *stack_b, int size)
 {
 	if (ft_check_sorted(stack_a, size) == 0)
@@ -91,8 +84,8 @@ int	ft_sort(int *stack_a, int *stack_b, int size)
 			ft_sort_three(stack_a, size);
 		else if (size > 3 && size < 9)
 			ft_sort_small(stack_a, stack_b, size);
-//		else
-//			ft_sort_big(stack_a, stack_b, size);
+		else
+			ft_sort_big(stack_a, stack_b, size);
 	}
 	return (0);
 }
