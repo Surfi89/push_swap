@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/07 01:58:59 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:18:21 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_sort_small(int *stack_a, int *stack_b, int size_a)
 	while (tmp - size_b > 3)
 	{
 		low_pos = ft_lowest_num(stack_a, size_a);
-		ft_move_to_top(stack_a, low_pos, size_a);
+		ft_move_to_top_a(stack_a, low_pos, size_a);
 		ft_pb(stack_a, stack_b, size_a, size_b);
 		size_a--;
 		size_b++;
@@ -72,6 +72,21 @@ void	ft_sort_small(int *stack_a, int *stack_b, int size_a)
 		size_b--;
 		i++;
 	}
+}
+
+void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
+{
+	int	size_b;
+	int	hold_size;
+	int	i;
+	int	mid;
+
+	size_b = 0;
+	hold_size = size_a;
+	ft_index(stack_a, size_a);
+//	ft_pruebas(stack_a, stack_b);
+	ft_sort_three(stack_a, size_a);
+	ft_push_to_a(stack_a, stack_b, size_a, size_b);
 }
 
 int	ft_sort(int *stack_a, int *stack_b, int size)

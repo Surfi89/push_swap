@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:03:08 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/03 12:59:53 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:33:49 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,7 @@ void	ft_push_swap(char **argv)
 		i++;
 	}
 	ft_check_repeat(stack_a, size);
-//	ft_pruebas(stack_a, stack_b);
 	ft_sort(stack_a, stack_b, size);
-//	ft_pruebas(stack_a, stack_b);
 	free(stack_a);
 	free(stack_b);
 }

@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/07 01:56:11 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/07 10:49:03 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,12 +57,12 @@ $(NAME):	$(OBJ)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@$(ECHO) -n "$(YELLOW)[$(NAME)]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(SRC) $(HEADER) libft.a -o $(NAME)
+			@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(HEADER) libft.a -o $(NAME)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 			@$(ECHO) -n "$(ORANGE)=$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+			@$(CC) $(CFLAGS) $(FSANITIZE) $(HEADER) -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)

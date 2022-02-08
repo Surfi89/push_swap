@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:08:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/03 11:55:25 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:28:18 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_error(void)
 	exit (1);
 }
 
-int	ft_lowest_num(int *stack_a, int size)
+int	ft_lowest_num(int *stack, int size)
 {
 	int	i;
 	int	low_pos;
@@ -29,14 +29,30 @@ int	ft_lowest_num(int *stack_a, int size)
 	low_pos = 0;
 	while (i < size)
 	{
-		if (stack_a[i] < stack_a[low_pos])
+		if (stack[i] < stack[low_pos])
 			low_pos = i;
 		i++;
 	}
 	return (low_pos);
 }
 
-void	ft_move_to_top(int *stack_a, int low_pos, int size)
+int	ft_highest_num(int *stack, int size)
+{
+	int	i;
+	int	high_pos;
+
+	i = 1;
+	high_pos = 0;
+	while (i < size)
+	{
+		if (stack[i] > stack[high_pos])
+			high_pos = i;
+		i++;
+	}
+	return (high_pos);
+}
+
+void	ft_move_to_top_a(int *stack_a, int low_pos, int size)
 {
 	int	i;
 
@@ -56,6 +72,31 @@ void	ft_move_to_top(int *stack_a, int low_pos, int size)
 		while (i < low_pos)
 		{
 			ft_ra(stack_a, size);
+			i++;
+		}
+	}
+}
+
+void	ft_move_to_top_b(int *stack_b, int high_pos, int size_b)
+{
+	int	i;
+
+	i = 0;
+	if (high_pos == 0)
+		return ;
+	if (high_pos > size_b - high_pos)
+	{
+		while (i < size_b - high_pos)
+		{	
+			rrb(stack_b, size_b);
+			i++;
+		}
+	}
+	else
+	{
+		while (i < high_pos)
+		{
+			rb(stack_b, size_b);
 			i++;
 		}
 	}

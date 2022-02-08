@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:50:27 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/07 02:14:25 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:26:07 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_sort_tmp(int *tmp_stack, int size)
 	int	i;
 	int	j;
 	int	tmp;
-	
+
 	i = 0;
 	while (i < size)
 	{
@@ -51,7 +51,6 @@ void	ft_index(int *stack_a, int size)
 		i++;
 	}
 	ft_sort_tmp(tmp_stack, size);
-	ft_pruebas(stack_a, tmp_stack);
 	i = 0;
 	while (i < size)
 	{
@@ -67,13 +66,16 @@ void	ft_index(int *stack_a, int size)
 	free (tmp_stack);
 }
 
-void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
+void	ft_push_to_a(int *stack_a, int *stack_b, int size_a, int size_b)
 {
-//	int	i;
-//	int	j;
-//	int	mid;
+	int	high_pos;
 
-	ft_index(stack_a, size_a);
-	ft_pruebas(stack_a, stack_b);
+	while (size_b > 0)
+	{
+		high_pos = ft_highest_num(stack_b, size_b);
+		ft_move_to_top_b(stack_b, high_pos, size_b);
+		pa(stack_a, stack_b, size_a, size_b);
+		size_a++;
+		size_b--;
+	}
 }
-
