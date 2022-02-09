@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:08:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/08 14:28:18 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/09 09:48:53 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_lowest_num(int *stack, int size)
 	return (low_pos);
 }
 
-int	ft_highest_num(int *stack, int size)
+/*int	ft_highest_num(int *stack, int size)
 {
 	int	i;
 	int	high_pos;
@@ -50,7 +50,7 @@ int	ft_highest_num(int *stack, int size)
 		i++;
 	}
 	return (high_pos);
-}
+}*/
 
 void	ft_move_to_top_a(int *stack_a, int low_pos, int size)
 {
@@ -77,7 +77,7 @@ void	ft_move_to_top_a(int *stack_a, int low_pos, int size)
 	}
 }
 
-void	ft_move_to_top_b(int *stack_b, int high_pos, int size_b)
+/*void	ft_move_to_top_b(int *stack_b, int high_pos, int size_b)
 {
 	int	i;
 
@@ -100,4 +100,4 @@ void	ft_move_to_top_b(int *stack_b, int high_pos, int size_b)
 			i++;
 		}
 	}
-}
+}*/

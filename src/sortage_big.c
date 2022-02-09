@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:50:27 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/08 14:26:07 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/09 09:50:33 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_index(int *stack_a, int size)
 	free (tmp_stack);
 }
 
-void	ft_push_to_a(int *stack_a, int *stack_b, int size_a, int size_b)
+/*void	ft_push_to_a(int *stack_a, int *stack_b, int size_a, int size_b)
 {
 	int	high_pos;
 
@@ -78,4 +78,4 @@ void	ft_push_to_a(int *stack_a, int *stack_b, int size_a, int size_b)
 		size_a++;
 		size_b--;
 	}
-}
+}*/

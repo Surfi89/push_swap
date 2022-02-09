@@ -6,24 +6,38 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/08 14:18:21 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:04:20 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	ft_check_sorted(int *stack, int size)
+int	ft_check_sorted(int *stack, int size, int asc_des)
 {
 	int	i;
 
-	i = 1;
-	while (i < size)
+	if (asc_des == 0)
 	{
-		if (stack[i - 1] > stack[i])
-			return (0);
-		i++;
+		i = 1;
+		while (i < size)
+		{
+			if (stack[i - 1] > stack[i])
+				return (0);
+			i++;
+		}
+		return (1);
 	}
-	return (1);
+	else
+	{
+		i = 1;
+		while (i < size)
+		{
+			if (stack[i - 1] < stack[i])
+				return (0);
+			i++;
+		}
+		return (1);
+	}
 }
 
 void	ft_sort_three(int *stack, int size)
@@ -74,7 +88,7 @@ void	ft_sort_small(int *stack_a, int *stack_b, int size_a)
 	}
 }
 
-void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
+/*void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
 {
 	int	size_b;
 	int	hold_size;
@@ -87,11 +101,11 @@ void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
 //	ft_pruebas(stack_a, stack_b);
 	ft_sort_three(stack_a, size_a);
 	ft_push_to_a(stack_a, stack_b, size_a, size_b);
-}
+}*/
 
 int	ft_sort(int *stack_a, int *stack_b, int size)
 {
-	if (ft_check_sorted(stack_a, size) == 0)
+	if (ft_check_sorted(stack_a, size, 0) == 0)
 	{
 		if (size == 2)
 			ft_sa(stack_a);
@@ -100,7 +114,7 @@ int	ft_sort(int *stack_a, int *stack_b, int size)
 		else if (size > 3 && size < 9)
 			ft_sort_small(stack_a, stack_b, size);
 		else
-			ft_sort_big(stack_a, stack_b, size);
+			ft_quicksort_a(stack_a, stack_b, size, 0);
 	}
 	return (0);
 }

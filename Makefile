@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/07 10:49:03 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/09 11:05:58 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 SRC_FILES	=	push_swap utils swap_moves rotation_moves rev_rot_moves \
-				push_moves sortage sortage_big pruebas
+				push_moves sortage sortage_big quicksort  pruebas
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
