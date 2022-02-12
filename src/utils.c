@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:08:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/09 09:48:53 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/12 02:19:24 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,34 @@ void	ft_error(void)
 	exit (1);
 }
 
-int	ft_lowest_num(int *stack, int size)
+int	ft_lowest_num(t_stacks *stack)
 {
 	int	i;
 	int	low_pos;
 
 	i = 1;
 	low_pos = 0;
-	while (i < size)
+	while (i < stack->size_a)
 	{
-		if (stack[i] < stack[low_pos])
+		if (stack->a[i] < stack->a[low_pos])
 			low_pos = i;
 		i++;
 	}
 	return (low_pos);
 }
 
-/*int	ft_highest_num(int *stack, int size)
-{
-	int	i;
-	int	high_pos;
-
-	i = 1;
-	high_pos = 0;
-	while (i < size)
-	{
-		if (stack[i] > stack[high_pos])
-			high_pos = i;
-		i++;
-	}
-	return (high_pos);
-}*/
-
-void	ft_move_to_top_a(int *stack_a, int low_pos, int size)
+void	ft_move_to_top_a(t_stacks *stack, int low_pos)
 {
 	int	i;
 
 	i = 0;
 	if (low_pos == 0)
 		return ;
-	if (low_pos > size - low_pos)
+	if (low_pos > stack->size_a - low_pos)
 	{
-		while (i < size - low_pos)
+		while (i < stack->size_a - low_pos)
 		{	
-			ft_rra(stack_a, size);
+			ft_rra(stack);
 			i++;
 		}
 	}
@@ -71,33 +55,32 @@ void	ft_move_to_top_a(int *stack_a, int low_pos, int size)
 	{
 		while (i < low_pos)
 		{
-			ft_ra(stack_a, size);
+			ft_ra(stack);
 			i++;
 		}
 	}
 }
 
-/*void	ft_move_to_top_b(int *stack_b, int high_pos, int size_b)
+void	ft_sort_tmp(int *tmp_stack, int size)
 {
 	int	i;
+	int	j;
+	int	tmp;
 
 	i = 0;
-	if (high_pos == 0)
-		return ;
-	if (high_pos > size_b - high_pos)
+	while (i < size)
 	{
-		while (i < size_b - high_pos)
-		{	
-			rrb(stack_b, size_b);
-			i++;
-		}
-	}
-	else
-	{
-		while (i < high_pos)
+		j = i + 1;
+		while (j < size)
 		{
-			rb(stack_b, size_b);
-			i++;
+			if (tmp_stack[i] > tmp_stack[j])
+			{
+				tmp = tmp_stack[i];
+				tmp_stack[i] = tmp_stack[j];
+				tmp_stack[j] = tmp;
+			}
+			j++;
 		}
+		i++;
 	}
-}*/
+}

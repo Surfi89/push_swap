@@ -6,52 +6,67 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:50:45 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/09 14:52:10 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/12 02:06:43 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include <stdlib.h>
 
-void	ft_sort_three_b(int *stack, int size)
+void	ft_quicksort_3(t_stacks *stack, int len)
 {
-	if (stack[0] < stack[1] && stack[0] > stack[2] && stack[1] > stack[2])
-		ft_sb(stack);
-		
-	if (stack[0] < stack[1] && stack[0] < stack[2] && stack[1] < stack[2])
+	if (len == 3 && stack->size_a == 3)
+		ft_sort_three_a(stack);
+	else if (len == 2)
 	{
-		ft_sb(stack);
-		ft_rrb(stack, size);
+		if (stack->a[0] > stack->a[1])
+			ft_sa(stack);
 	}
-	if (stack[0] < stack[1] && stack[0] < stack[2] && stack[1] > stack[2])
-		ft_rb(stack, size);
-	if (stack[0] > stack[1] && stack[0] > stack[2] && stack[1] < stack[2])
+	else if (len == 3)
 	{
-		ft_sb(stack);
-		ft_ra(stack, size);
+		while (len != 3 || !(stack->a[0] < stack->a[1]
+					&& stack->a[1] < stack->a[2]))
+			if (len == 3 && stack->a[0] > stack->a[1] && stack->a[2])
+				ft_sa(stack);
+			else if (len == 3 && !(stack->a[2] > stack->a[0]
+						&& stack->a[2] > stack->a[1]))
+			{
+				ft_pb(stack);
+				len--;
+			}
+			else if (stack->a[0] > stack->a[1])
+				ft_sa(stack);
+			else if (len++)
+				ft_pa(stack);
 	}
-	if (stack[0] > stack[1] && stack[0] < stack[2] && stack[1] < stack[2])
-		ft_rrb(stack, size);
 }
 
-int	ft_sort_small_b(int *stack_a, int *stack_b, int size_a int size_b)
+int	ft_sort_small_b(t_stacks *s, int len)
 {
-	if (size_b == 1)
-		ft_pa(stack_b, stack_a, size_a, size_b)
-	if (size_b == 2)
+	if (len == 1)
+		ft_pa(s);
+	else if (len == 2)
 	{
-		if (stack_b[0] < stack_b[1])
-		{
-			ft_sb(stack_b);
-			while ((size_a++) && (size_b--))
-				ft_pa(stack_b, stack_a, size_a, size_b);
-		}
+		if (s->b[0] < s->b[1])
+			ft_sb(s);
+		while (len--)
+			ft_pa(s);
 	}
-	else if (size == 3)
+	else if (len == 3)
 	{
-		ft_sort_three_b(stack, size);
-		while ((size_a++) && (size_b--))
-			ft_pa(stack_b, stack_a, size_a, size_b);
+		while (len || !(s->a[0] < s->a[1] && s->a[1] < s->a[2]))
+		{
+			if (len == 1 && s->a[0] > s->a[1])
+				ft_sa(s);
+			else if (len == 1 || (len >= 2 && s->b[0] > s->b[1])
+					|| (len == 3 && s->b[0] > s->b[2]))
+			{
+				ft_pa(s);
+				len--;
+			}
+			else
+				ft_sb(s);
+		}
 	}
 	return (0);
 }
@@ -61,7 +76,7 @@ int	ft_get_mediane(int *pivot, int *stack, int size)
 	int		*tmp_stack;
 	int		i;
 
-	tmp_stack = malloc(size * sizeof(int));
+	tmp_stack = (int *)malloc(size * sizeof(int));
 	if (!tmp_stack)
 		return (0);
 	i = 0;
@@ -76,64 +91,65 @@ int	ft_get_mediane(int *pivot, int *stack, int size)
 	return (1);
 }
 
-int	ft_quicksort_a(int *stack_a, int *stack_b, int size_a, int size_b)
+int	ft_quicksort_a(t_stacks *stack, int len)
 {
 	int	pivot;
 	int	items;
 	int	pushed_under;
-
-	if (ft_check_sorted(stack_a, size_a, 0) == 1)
+	
+	ft_index(stack, len);
+	if (ft_check_sorted(stack->a, len, ASCENDING) == 1)
 		return (1);
-	items = size_a;
-	if (size_a <= 3)
+	items = len;
+	if (len <= 3)
 	{
-		ft_sort(stack_a, stack_b, size_a);
+		ft_quicksort_3(stack, len);
 		return (1);
 	}
 	pushed_under = 0;
-	if (!pushed_under && !ft_get_mediane(&pivot, stack_a, size_a))
+	if (!pushed_under && !ft_get_mediane(&pivot, stack->a, len))
 		return (0);
-	while (size_a != items / 2 + items % 2)
+	while (len != items / 2 + items % 2)
 	{
-		if (stack_a[0] < pivot && (size_a--) && (size_b++))
-			ft_pb(stack_a, stack_b, size_a, size_b);
-		else if ((++pushed_under))
-			ft_ra(stack_a, size_a);
+		if (stack->a[0] < pivot && (len--))
+			ft_pb(stack);
+		else if (++pushed_under)
+			ft_ra(stack);
 	}
-	while (items / 2 + items % 2 != size_a && pushed_under--)
-		ft_rra(stack_a, size_a);
-	return (ft_quicksort_a(stack_a, stack_b, size_a, size_b)
-		&& ft_quicksort_b(stack_a, stack_b, size_a, size_b));
+	while (items / 2 + items % 2 != stack->size_a && pushed_under--)
+		ft_rra(stack);
+	return (ft_quicksort_a(stack, items / 2 + items % 2)
+		&& ft_quicksort_b(stack, items / 2));
 	return (1);
 }
 
-int	ft_quicksort_b(int *stack_a, int *stack_b, int size_a, int size_b)
+int	ft_quicksort_b(t_stacks *stack, int len)
 {
 	int	pivot;
 	int	items;
-	int	pushed_under;
+	int	pushed;
 
-	pushed_under = 0;
-	if (!pushed_under && ft_check_sorted(stack_b, size_b, 1) == 1)
-		while ((size_b--) && (size_a++))
-			ft_pa(stack_b, stack_a, size_a, size_b);
-	if (size_b <= 3)
+	pushed = 0;
+	if (!pushed && ft_check_sorted(stack->b, len, DESCENDING) == 1)
+		while (len--)
+			ft_pa(stack);
+	if (len <= 3)
 	{
-		ft_sort_small_b(stack_a, stack_b, size_a, size_b);
+		ft_sort_small_b(stack, len);
 		return (1);
 	}
-	items = size_b;
-	if (!ft_get_mediane(&pivot, stack_b, size_b))
+	items = len;
+	if (!ft_get_mediane(&pivot, stack->b, len))
 		return (0);
-	while (size_b != items / 2)
+	while (len != items / 2)
 	{
-		if (stack_b[0] >= pivot && size_a++ && size_b--)
-			ft_pa(stack_b, stack_a, size_a, size_b);
-		else if (++pushed_under)
-			ft_rb(stack_b, size_b);
+		if (stack->b[0] >= pivot && len--)
+			ft_pa(stack);
+		else if (++pushed)
+			ft_rb(stack);
 	}
-	while (items / 2 != size_b && pushed_under--)
-		ft_rrb(stack_b, size_b);
-	return (ft_quicksort_a(stack_a, stack_b, size_a, size_b)
-		&& ft_quicksort_b(stack_a, stack_b, size_a, size_b));
+	while (items / 2 != stack->size_b && pushed--)
+		ft_rrb(stack);
+	return (ft_quicksort_a(stack, items / 2 + items % 2)
+		&& ft_quicksort_b(stack, items / 2));
 }

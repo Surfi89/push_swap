@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/09 11:05:58 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/12 02:15:51 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 FSANITIZE	= -fsanitize=address -g3
 RM			= rm -f
 ECHO		= echo -e
@@ -35,8 +35,8 @@ MAGENTA		=	\033[0;95m
 CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
-SRC_FILES	=	push_swap utils swap_moves rotation_moves rev_rot_moves \
-				push_moves sortage sortage_big quicksort  pruebas
+SRC_FILES	=	push_swap swap_moves rotation_moves rev_rot_moves push_moves \
+				sortage quicksort utils
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

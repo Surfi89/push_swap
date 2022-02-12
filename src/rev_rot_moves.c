@@ -6,65 +6,65 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:53:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/03 11:54:30 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/11 12:47:10 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include "../libft/inc/ft_printf.h"
 
-void	ft_rra(int *stack_a, int size)
+void	ft_rra(t_stacks *stack)
 {
 	int	tmp;
 	int	i;
 
-	i = size - 1;
-	tmp = stack_a[i];
+	i = stack->size_a - 1;
+	tmp = stack->a[i];
 	while (i)
 	{
-		stack_a[i] = stack_a[i - 1];
+		stack->a[i] = stack->a[i - 1];
 		i--;
 	}
-	stack_a[i] = tmp;
+	stack->a[i] = tmp;
 	ft_printf("rra\n");
 }
 
-void	ft_rrb(int *stack_b, int size_b)
+void	ft_rrb(t_stacks *stack)
 {
 	int	tmp;
 	int	i;
 
-	i = size_b - 1;
-	tmp = stack_b[i];
+	i = stack->size_b - 1;
+	tmp = stack->b[i];
 	while (i)
 	{
-		stack_b[i] = stack_b[i - 1];
+		stack->b[i] = stack->b[i - 1];
 		i--;
 	}
-	stack_b[i] = tmp;
+	stack->b[i] = tmp;
 	ft_printf("rrb\n");
 }
 
-void	ft_rrr(int *stack_a, int *stack_b, int size_a, int size_b)
+void	ft_rrr(t_stacks *stack)
 {
 	int	tmp;
 	int	i;
 
-	i = size_a - 1;
-	tmp = stack_a[i];
+	i = stack->size_a - 1;
+	tmp = stack->a[i];
 	while (i)
 	{
-		stack_a[i] = stack_a[i - 1];
+		stack->a[i] = stack->a[i - 1];
 		i--;
 	}
-	stack_a[i] = tmp;
-	i = size_b - 1;
-	tmp = stack_b[i];
+	stack->a[i] = tmp;
+	i = stack->size_b - 1;
+	tmp = stack->b[i];
 	while (i)
 	{
-		stack_b[i] = stack_b[i - 1];
+		stack->b[i] = stack->b[i - 1];
 		i--;
 	}
-	stack_b[i] = tmp;
+	stack->b[i] = tmp;
 	ft_printf("rrr\n");
 }

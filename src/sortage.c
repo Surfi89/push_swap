@@ -6,22 +6,22 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/09 11:04:20 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/12 02:02:04 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	ft_check_sorted(int *stack, int size, int asc_des)
+int	ft_check_sorted(int *pile, int size, int order)
 {
 	int	i;
 
-	if (asc_des == 0)
+	if (order == ASCENDING)
 	{
 		i = 1;
 		while (i < size)
 		{
-			if (stack[i - 1] > stack[i])
+			if (pile[i - 1] > pile[i])
 				return (0);
 			i++;
 		}
@@ -32,7 +32,7 @@ int	ft_check_sorted(int *stack, int size, int asc_des)
 		i = 1;
 		while (i < size)
 		{
-			if (stack[i - 1] < stack[i])
+			if (pile[i - 1] < pile[i])
 				return (0);
 			i++;
 		}
@@ -40,81 +40,60 @@ int	ft_check_sorted(int *stack, int size, int asc_des)
 	}
 }
 
-void	ft_sort_three(int *stack, int size)
+void	ft_sort_three_a(t_stacks *s)
 {
-	if (stack[0] > stack[1] && stack[0] < stack[2] && stack[1] < stack[2])
-		ft_sa(stack);
-	if (stack[0] > stack[1] && stack[0] > stack[2] && stack[1] > stack[2])
+	if (s->a[0] > s->a[1] && s->a[0] < s->a[2] && s->a[1] < s->a[2])
+		ft_sa(s);
+	if (s->a[0] > s->a[1] && s->a[0] > s->a[2] && s->a[1] > s->a[2])
 	{
-		ft_sa(stack);
-		ft_rra(stack, size);
+		ft_sa(s);
+		ft_rra(s);
 	}
-	if (stack[0] > stack[1] && stack[0] > stack[2] && stack[1] < stack[2])
-		ft_ra(stack, size);
-	if (stack[0] < stack[1] && stack[0] < stack[2] && stack[1] > stack[2])
+	if (s->a[0] > s->a[1] && s->a[0] > s->a[2] && s->a[1] < s->a[2])
+		ft_ra(s);
+	if (s->a[0] < s->a[1] && s->a[0] < s->a[2] && s->a[1] > s->a[2])
 	{
-		ft_sa(stack);
-		ft_ra(stack, size);
+		ft_sa(s);
+		ft_ra(s);
 	}
-	if (stack[0] < stack[1] && stack[0] > stack[2] && stack[1] > stack[2])
-		ft_rra(stack, size);
+	if (s->a[0] < s->a[1] && s->a[0] > s->a[2] && s->a[1] > s->a[2])
+		ft_rra(s);
 }
 
-void	ft_sort_small(int *stack_a, int *stack_b, int size_a)
+void	ft_sort_small(t_stacks *stack)
 {
-	int	size_b;
 	int	low_pos;
 	int	tmp;
 	int	i;
 
-	size_b = 0;
-	tmp = size_a;
-	while (tmp - size_b > 3)
+	tmp = stack->size_a;
+	while (tmp - stack->size_b > 3)
 	{
-		low_pos = ft_lowest_num(stack_a, size_a);
-		ft_move_to_top_a(stack_a, low_pos, size_a);
-		ft_pb(stack_a, stack_b, size_a, size_b);
-		size_a--;
-		size_b++;
+		low_pos = ft_lowest_num(stack);
+		ft_move_to_top_a(stack, low_pos);
+		ft_pb(stack);
 	}
-	ft_sort_three(stack_a, size_a);
+	ft_sort_three_a(stack);
 	i = 0;
 	while (tmp - i > 3)
 	{
-		ft_pa(stack_b, stack_a, size_a, size_b);
-		size_a++;
-		size_b--;
+		ft_pa(stack);
 		i++;
 	}
 }
 
-/*void	ft_sort_big(int *stack_a, int *stack_b, int size_a)
+int	ft_sort(t_stacks *stack, int size)
 {
-	int	size_b;
-	int	hold_size;
-	int	i;
-	int	mid;
-
-	size_b = 0;
-	hold_size = size_a;
-	ft_index(stack_a, size_a);
-//	ft_pruebas(stack_a, stack_b);
-	ft_sort_three(stack_a, size_a);
-	ft_push_to_a(stack_a, stack_b, size_a, size_b);
-}*/
-
-int	ft_sort(int *stack_a, int *stack_b, int size)
-{
-	if (ft_check_sorted(stack_a, size, 0) == 0)
+	if (ft_check_sorted(stack->a, stack->size_a, ASCENDING) == 0)
 	{
 		if (size == 2)
-			ft_sa(stack_a);
+			ft_sa(stack);
 		else if (size == 3)
-			ft_sort_three(stack_a, size);
+			ft_sort_three_a(stack);
 		else if (size > 3 && size < 9)
-			ft_sort_small(stack_a, stack_b, size);
+			ft_sort_small(stack);
 		else
-			ft_quicksort_a(stack_a, stack_b, size, 0);
+			ft_quicksort_a(stack, size);
 	}
 	return (0);
 }
