@@ -1,27 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
+/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 11:03:08 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 19:50:23 by ajordan-         ###   ########.fr       */
+/*   Created: 2022/02/12 19:03:10 by ajordan-          #+#    #+#             */
+/*   Updated: 2022/02/13 12:18:41 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
-#include "../libft/inc/libft.h"
-#include "../libft/inc/ft_printf.h"
+#include "../inc/checker.h"
+#include "../../ft_printf/includes/ft_printf.h"
 #include <stdlib.h>
 
-void	ft_error(void)
+void	ft_error(*a)
 {
 	ft_printf("Error\n");
+	free(a);
 	exit (1);
 }
 
-int	ft_ps_atoi(char *str)
+int	ft_check_sorted(*piles, size, int order)
+{
+	int	i;
+
+	if (order == ASCENDING)
+	{
+		i = 1;
+		while (i < size)
+		{
+			if (piles[i - 1] > piles[i])
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+}
+
+void	ft_check_repeat(*a, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (i < size)
+	{
+		while (j < size)
+		{
+			if (a[i] == a[j])
+				ft_error(a);
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
+}
+
+int	ft_ps_atoi(char *str, *a)
 {
 	unsigned int		i;
 	int					neg;
@@ -39,12 +76,12 @@ int	ft_ps_atoi(char *str)
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			ft_error();
+			ft_error(a);
 		num = (str[i] - '0') + (num * 10);
 		i++;
 	}
 	if ((num > 2147483648 && neg == -1) || (num > 2147483647 && neg == 1))
-		ft_error();
+		ft_error(a);
 	return (num * neg);
 }
 
@@ -61,42 +98,43 @@ int	ft_ps_strlen(char **argv)
 	return (i);
 }
 
-void	ft_push_swap(char **argv)
+long	ft_check_errors(char **argv)
 {
-	t_stacks	stack;
-	int	size;
-	int	i;
+	long	*a
+	int		size;
+	int		i;
 
-	i = -1;
+	i = 0;
 	size = ft_ps_strlen(argv);
-	stack.a = malloc(size * sizeof(int));
-	if (!stack.a)
+	a = malloc(size * sizeof(long));
+	if (!a)
 		return ;
-	stack.size_a = size;
-	stack.b = malloc(size * sizeof(int));
-	if (!stack.b)
-	{
-		free(stack.a);
-		return ;
-	}
-	stack.size_b = 0;
 	while (++i < size)
-		stack.a[i] = ft_ps_atoi(argv[i]);
-	ft_check_repeat(&stack, size);
-	ft_sort(&stack, size);
-	free(stack.a);
-	free(stack.b);
+		a[i] = ft_checker_atoi(argv[i], a);
+	ft_check_repeat(a, size);
+	return (a);
 }
 
 int	main(int argc, char **argv)
 {
+	t_stacks	stack;
+
 	if (argc > 1)
 	{
 		argv++;
 		if (argc == 2)
 			argv = ft_split(*argv, ' ');
-		ft_push_swap(argv);
-		return (0);
+		stack.a = ft_check_errors(argv);
+		stack.size_a = argc - 1;
+		ft_checker_instructions(stack);
+		stack.b = malloc(stack.size_a * sizeof(long));
+		if (!stack.b)
+		{
+			free(stack.a);
+			return ;
+		}
+		stack.size_b = 0;
+		checker(stack);
 	}
 	return (0);
 }

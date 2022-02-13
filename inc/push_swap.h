@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:21:05 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 02:17:08 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/12 18:35:32 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@ void	ft_pa(t_stacks *stack);
 int		ft_sort(t_stacks *stack, int size);
 int		ft_check_sorted(int *pile, int size, int order);
 void	ft_sort_three_a(t_stacks *s);
-void	ft_sort_small(t_stacks *stack);
-int		ft_lowest_num(t_stacks *stack);
-void	ft_move_to_top_a(t_stacks *stack, int low_pos);
 void	ft_sort_tmp(int *tmp_stack, int size);
 int		ft_quicksort_a(t_stacks *stack, int len);
 int		ft_quicksort_b(t_stacks *stack, int len);
 void		ft_quicksort_3(t_stacks *stack, int len);
 int		ft_sort_small_b(t_stacks *stack, int len);
 int		ft_get_mediane(int *pivot, int *stack, int size);
-void	ft_index(t_stacks *stack, int size);
 
 #endif

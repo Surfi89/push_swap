@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:50:45 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 02:06:43 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/12 18:05:47 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	ft_quicksort_a(t_stacks *stack, int len)
 	int	items;
 	int	pushed_under;
 	
-	ft_index(stack, len);
 	if (ft_check_sorted(stack->a, len, ASCENDING) == 1)
 		return (1);
 	items = len;

@@ -6,11 +6,12 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 02:02:04 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/12 18:36:46 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+#include <stdlib.h>
 
 int	ft_check_sorted(int *pile, int size, int order)
 {
@@ -40,6 +41,53 @@ int	ft_check_sorted(int *pile, int size, int order)
 	}
 }
 
+void	ft_sort_tmp(int *tmp_stack, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tmp_stack[i] > tmp_stack[j])
+			{
+				tmp = tmp_stack[i];
+				tmp_stack[i] = tmp_stack[j];
+				tmp_stack[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_check_repeat(t_stacks *stack, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (i < size)
+	{
+		while (j < size)
+		{
+			if (stack->a[i] == stack->a[j])
+			{
+				free(stack->a);
+				ft_error();
+			}
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
+}
+
 void	ft_sort_three_a(t_stacks *s)
 {
 	if (s->a[0] > s->a[1] && s->a[0] < s->a[2] && s->a[1] < s->a[2])
@@ -60,28 +108,6 @@ void	ft_sort_three_a(t_stacks *s)
 		ft_rra(s);
 }
 
-void	ft_sort_small(t_stacks *stack)
-{
-	int	low_pos;
-	int	tmp;
-	int	i;
-
-	tmp = stack->size_a;
-	while (tmp - stack->size_b > 3)
-	{
-		low_pos = ft_lowest_num(stack);
-		ft_move_to_top_a(stack, low_pos);
-		ft_pb(stack);
-	}
-	ft_sort_three_a(stack);
-	i = 0;
-	while (tmp - i > 3)
-	{
-		ft_pa(stack);
-		i++;
-	}
-}
-
 int	ft_sort(t_stacks *stack, int size)
 {
 	if (ft_check_sorted(stack->a, stack->size_a, ASCENDING) == 0)
@@ -90,8 +116,6 @@ int	ft_sort(t_stacks *stack, int size)
 			ft_sa(stack);
 		else if (size == 3)
 			ft_sort_three_a(stack);
-		else if (size > 3 && size < 9)
-			ft_sort_small(stack);
 		else
 			ft_quicksort_a(stack, size);
 	}
