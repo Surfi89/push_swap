@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_checker.c                                    :+:      :+:    :+:   */
+/*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:17:10 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 12:43:31 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 21:13:48 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long	ft_check_opt(char *opt)
+#include "../inc/push_swap.h"
+#include "../libft/inc/libft.h"
+#include "../libft/inc/ft_printf.h"
+#include <stdlib.h>
+
+int	ft_check_opt(char *opt)
 {
 	if (ft_strcmp(opt, "sa\n") || ft_strcmp(opt, "sb\n")
 		|| ft_strcmp(opt, "ss\n") || ft_strcmp(opt, "ra\n")
@@ -29,71 +34,46 @@ long	ft_check_opt(char *opt)
 void	ft_opt(t_stacks *stack, char *opt)
 {
 	if (ft_strcmp(opt, "sa\n"))
-		ft_sa(stack);
+		ft_sa(stack, STACK);
 	else if (ft_strcmp(opt, "sb\n"))
-		ft_sb(stack);
+		ft_sb(stack, STACK);
 	else if (ft_strcmp(opt, "ss\n"))
-		ft_ss(stack);
+		ft_ss(stack, STACK);
 	else if (ft_strcmp(opt, "ra\n"))
-		ft_ra(stack);
+		ft_ra(stack, STACK);
 	else if (ft_strcmp(opt, "rb\n"))
-		ft_rb(stack);
+		ft_rb(stack, STACK);
 	else if (ft_strcmp(opt, "rr\n"))
-		ft_rr(stack);
+		ft_rr(stack, STACK);
 	else if (ft_strcmp(opt, "rra\n"))
-		ft_rra(stack);
+		ft_rra(stack, STACK);
 	else if (ft_strcmp(opt, "rrb\n"))
-		ft_rrb(stack);
+		ft_rrb(stack, STACK);
 	else if (ft_strcmp(opt, "rrr\n"))
-		ft_rrr(stack);
+		ft_rrr(stack, STACK);
 	else if (ft_strcmp(opt, "pa\n"))
-		ft_pa(stack);
+		ft_pa(stack, STACK);
 	else if (ft_strcmp(opt, "pb\n"))
-		ft_pb(stack);
-}
-
-void	checker(t_stacks *stack)
-{
-	char		*opt;
-
-	while (1)
-	{
-		opt = get_next_line(0);
-		if (ft_strcmp(opt, "\n"))
-		{
-			if (ft_check_sorted(stack->a, stack->size_a, ASCENDING))
-				ft_printf("\033[0;32mOK\n");
-			else
-				ft_printf("\033[0;31mK0\n");
-			free(stack->b);
-			exit (1);
-		}
-		if (!ft_check_opt(opt))
-		{
-			free(stack->a);
-			free(stack->b);
-			return ;
-		}
-		ft_opt(t_stacks *stack, opt);
-	}
+		ft_pb(stack, STACK);
+	ft_print_stacks(stack);
 }
 
 void	ft_checker_start(t_stacks *stack)
 {
+	int i;
+
+	i = 0;
 	ft_printf("--------------------------------------------------------------");
 	ft_printf("----------------------------------------------------------\n");
 	ft_printf("				Stack A					Stack B				\n");
 	ft_printf("				-------					-------			\n");
-	while (size > i)
+	while (stack->size_a > i)
 	{
-		if (stack->a[i] == 2148473648)
-			ft_printf("				2148473648				-		\n", stack->a[i]);
-		else if (stack->a[i] == -2148473648)
-			ft_printf("				-2148473648				-		\n", stack->a[i]);
-		else
-			ft_printf("				%d					-		\n", stack->a[i]);
+		ft_printf("				%d					-		\n", stack->a[i]);
 		i++;
 	}
+	ft_printf("--------------------------------------------------------------");
+	ft_printf("----------------------------------------------------------\n");
 }
 
 void	ft_checker_instructions(t_stacks *stack)

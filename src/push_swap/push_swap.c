@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:03:08 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 19:50:23 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 21:16:01 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,6 @@
 #include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
 #include <stdlib.h>
-
-void	ft_error(void)
-{
-	ft_printf("Error\n");
-	exit (1);
-}
-
-int	ft_ps_atoi(char *str)
-{
-	unsigned int		i;
-	int					neg;
-	unsigned long int	num;
-
-	i = 0;
-	num = 0;
-	neg = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-		neg = -1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			ft_error();
-		num = (str[i] - '0') + (num * 10);
-		i++;
-	}
-	if ((num > 2147483648 && neg == -1) || (num > 2147483647 && neg == 1))
-		ft_error();
-	return (num * neg);
-}
-
-int	ft_ps_strlen(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (*argv)
-	{
-		argv++;
-		i++;
-	}
-	return (i);
-}
 
 void	ft_push_swap(char **argv)
 {
@@ -81,8 +35,8 @@ void	ft_push_swap(char **argv)
 	}
 	stack.size_b = 0;
 	while (++i < size)
-		stack.a[i] = ft_ps_atoi(argv[i]);
-	ft_check_repeat(&stack, size);
+		stack.a[i] = ft_ps_atoi(argv[i], stack.a);
+	ft_check_repeat(stack.a, size);
 	ft_sort(&stack, size);
 	free(stack.a);
 	free(stack.b);

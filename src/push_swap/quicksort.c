@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:50:45 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 18:05:47 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:28:44 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,52 +20,52 @@ void	ft_quicksort_3(t_stacks *stack, int len)
 	else if (len == 2)
 	{
 		if (stack->a[0] > stack->a[1])
-			ft_sa(stack);
+			ft_sa(stack, OPT);
 	}
 	else if (len == 3)
 	{
 		while (len != 3 || !(stack->a[0] < stack->a[1]
 					&& stack->a[1] < stack->a[2]))
 			if (len == 3 && stack->a[0] > stack->a[1] && stack->a[2])
-				ft_sa(stack);
+				ft_sa(stack, OPT);
 			else if (len == 3 && !(stack->a[2] > stack->a[0]
 						&& stack->a[2] > stack->a[1]))
 			{
-				ft_pb(stack);
+				ft_pb(stack, OPT);
 				len--;
 			}
 			else if (stack->a[0] > stack->a[1])
-				ft_sa(stack);
+				ft_sa(stack, OPT);
 			else if (len++)
-				ft_pa(stack);
+				ft_pa(stack, OPT);
 	}
 }
 
 int	ft_sort_small_b(t_stacks *s, int len)
 {
 	if (len == 1)
-		ft_pa(s);
+		ft_pa(s, OPT);
 	else if (len == 2)
 	{
 		if (s->b[0] < s->b[1])
-			ft_sb(s);
+			ft_sb(s, OPT);
 		while (len--)
-			ft_pa(s);
+			ft_pa(s, OPT);
 	}
 	else if (len == 3)
 	{
 		while (len || !(s->a[0] < s->a[1] && s->a[1] < s->a[2]))
 		{
 			if (len == 1 && s->a[0] > s->a[1])
-				ft_sa(s);
+				ft_sa(s, OPT);
 			else if (len == 1 || (len >= 2 && s->b[0] > s->b[1])
 					|| (len == 3 && s->b[0] > s->b[2]))
 			{
-				ft_pa(s);
+				ft_pa(s, OPT);
 				len--;
 			}
 			else
-				ft_sb(s);
+				ft_sb(s, OPT);
 		}
 	}
 	return (0);
@@ -111,12 +111,12 @@ int	ft_quicksort_a(t_stacks *stack, int len)
 	while (len != items / 2 + items % 2)
 	{
 		if (stack->a[0] < pivot && (len--))
-			ft_pb(stack);
+			ft_pb(stack, OPT);
 		else if (++pushed_under)
-			ft_ra(stack);
+			ft_ra(stack, OPT);
 	}
 	while (items / 2 + items % 2 != stack->size_a && pushed_under--)
-		ft_rra(stack);
+		ft_rra(stack, OPT);
 	return (ft_quicksort_a(stack, items / 2 + items % 2)
 		&& ft_quicksort_b(stack, items / 2));
 	return (1);
@@ -131,7 +131,7 @@ int	ft_quicksort_b(t_stacks *stack, int len)
 	pushed = 0;
 	if (!pushed && ft_check_sorted(stack->b, len, DESCENDING) == 1)
 		while (len--)
-			ft_pa(stack);
+			ft_pa(stack, OPT);
 	if (len <= 3)
 	{
 		ft_sort_small_b(stack, len);
@@ -143,12 +143,12 @@ int	ft_quicksort_b(t_stacks *stack, int len)
 	while (len != items / 2)
 	{
 		if (stack->b[0] >= pivot && len--)
-			ft_pa(stack);
+			ft_pa(stack, OPT);
 		else if (++pushed)
-			ft_rb(stack);
+			ft_rb(stack, OPT);
 	}
 	while (items / 2 != stack->size_b && pushed--)
-		ft_rrb(stack);
+		ft_rrb(stack, OPT);
 	return (ft_quicksort_a(stack, items / 2 + items % 2)
 		&& ft_quicksort_b(stack, items / 2));
 }

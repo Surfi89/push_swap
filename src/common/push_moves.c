@@ -6,14 +6,14 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:55:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/11 12:31:26 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:48:46 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include "../libft/inc/ft_printf.h"
 
-void	ft_pb(t_stacks *stack)
+void	ft_pb(t_stacks *stack, int print)
 {
 	int	i;
 
@@ -28,13 +28,14 @@ void	ft_pb(t_stacks *stack)
 		stack->size_a--;
 		while (++i < stack->size_a)
 			stack->a[i] = stack->a[i + 1];
-		ft_printf("pb\n");
+		if (print == OPT)
+			ft_printf("pb\n");
 	}
 	else
 		return ;
 }
 
-void	ft_pa(t_stacks *stack)
+void	ft_pa(t_stacks *stack, int print)
 {
 	int	i;
 
@@ -49,7 +50,8 @@ void	ft_pa(t_stacks *stack)
 		stack->size_b--;
 		while (++i < stack->size_b)
 			stack->b[i] = stack->b[i + 1];
-		ft_printf("pa\n");
+		if (print == OPT)
+			ft_printf("pa\n");
 	}
 	else
 		return ;

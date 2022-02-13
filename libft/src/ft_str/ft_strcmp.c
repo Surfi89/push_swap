@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 18:58:34 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/12 19:02:42 by ajordan-         ###   ########.fr       */
+/*   Created: 2022/02/13 20:13:54 by ajordan-          #+#    #+#             */
+/*   Updated: 2022/02/13 20:17:05 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include "stdlib.h"
-# include "../../ft_printf/includes/ft_printf.h"
-
-typedef struct	s_stacks
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	long	*a;
-	long	*b;
-	int	size_a;
-	int	size_b;
-}	t_stacks;
-
-
-
-#endif
+	if (!s1)
+		return (0);
+	while (*s1)
+	{
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
+	}
+	return (1);
+}

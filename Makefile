@@ -6,13 +6,14 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/12 18:38:03 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/13 21:22:34 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL		=	/bin/bash
 
 NAME		= push_swap
+BNAME		= checker
 INC			= inc
 HEADER		= -I inc
 LIBFT		= libft
@@ -35,11 +36,25 @@ MAGENTA		=	\033[0;95m
 CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
-SRC_FILES	=	push_swap swap_moves rotation_moves rev_rot_moves push_moves \
-				sortage quicksort
+PSW_DIR		=	push_swap/
+MAND_FILES	=	push_swap sortage quicksort
+COMM_DIR	=	common/
+COMM_FILES	=	swap_moves rotation_moves rev_rot_moves push_moves utils
+BONUS_DIR	=	bonus/
+BONUS_FILES	=	bonus_checker bonus_print_stacks bonus_utils
+
+SRC_FILES	=	$(addprefix $(PSW_DIR), $(MAND_FILES))
+COM_FILES	=	$(addprefix $(COMM_DIR), $(COMM_FILES))
+SRC_BFILES	=	$(addprefix $(BONUS_DIR), $(BONUS_FILES))
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+COMMON 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(COM_FILES)))
+COBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(COM_FILES)))
+
+BSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_BFILES)))
+BOBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_BFILES)))
 
 OBJF		=	.cache_exists
 
@@ -57,7 +72,7 @@ $(NAME):	$(OBJ)
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@$(ECHO) -n "$(YELLOW)[$(NAME)]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(HEADER) libft.a -o $(NAME)
+			@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(COMMON) $(HEADER) libft.a -o $(NAME)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
@@ -66,6 +81,9 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)$(PSW_DIR)
+			@mkdir -p $(OBJ_DIR)$(COMM_DIR)
+			@mkdir -p $(OBJ_DIR)$(BONUS_DIR)
 
 clean:
 			@$(RM) -r $(OBJ_DIR)
@@ -74,6 +92,7 @@ clean:
 
 fclean:		clean
 			@$(RM) $(NAME)
+			@$(RM) $(BNAME)
 			@$(RM) libft.a
 			@$(RM) $(LIBFT)/libft.a
 			@rm -rf *.dSYM
@@ -84,6 +103,22 @@ fclean:		clean
 
 re:			fclean all
 			@$(ECHO) -n "$(GREEN)Cleaned and rebuilt everything for [push_swap]!$(DEF_COLOR)\n"
+
+bonus:
+			@$(ECHO) -n "$(YELLOW)[Dependencies]:\t$(DEF_COLOR)"
+			@$(ECHO) -n "$(RED)[$(DEF_COLOR)"
+			@make -s allbonus
+
+allbonus:		$(BNAME)
+
+$(BNAME):	$(BOBJ)
+			@$(ECHO) -n "$(RED)]$(DEF_COLOR)"
+			@$(ECHO) -n "$(GREEN) => 100%$(DEF_COLOR)\n"
+			@make -C $(LIBFT)
+			@cp libft/libft.a .
+			@$(ECHO) -n "$(YELLOW)[$(BNAME)]:\t$(DEF_COLOR)"
+			@$(CC) $(CFLAGS) $(FSANITIZE) $(BSRC) $(COMMON) $(HEADER) libft.a -o $(BNAME)
+			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 norm:
 			@clear

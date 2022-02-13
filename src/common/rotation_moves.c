@@ -1,70 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rot_moves.c                                    :+:      :+:    :+:   */
+/*   rotation_moves.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 09:53:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/11 12:47:10 by ajordan-         ###   ########.fr       */
+/*   Created: 2022/01/26 09:47:38 by ajordan-          #+#    #+#             */
+/*   Updated: 2022/02/13 15:48:08 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include "../libft/inc/ft_printf.h"
 
-void	ft_rra(t_stacks *stack)
+void	ft_ra(t_stacks *stack, int print)
 {
 	int	tmp;
 	int	i;
 
-	i = stack->size_a - 1;
+	i = 0;
 	tmp = stack->a[i];
-	while (i)
+	i++;
+	while (i < stack->size_a)
 	{
-		stack->a[i] = stack->a[i - 1];
-		i--;
+		stack->a[i - 1] = stack->a[i];
+		i++;
 	}
-	stack->a[i] = tmp;
-	ft_printf("rra\n");
+	stack->a[i - 1] = tmp;
+	if (print == OPT)
+		ft_printf("ra\n");
 }
 
-void	ft_rrb(t_stacks *stack)
+void	ft_rb(t_stacks *stack, int print)
 {
 	int	tmp;
 	int	i;
 
-	i = stack->size_b - 1;
+	i = 0;
 	tmp = stack->b[i];
-	while (i)
+	i++;
+	while (i < stack->size_b)
 	{
-		stack->b[i] = stack->b[i - 1];
-		i--;
+		stack->b[i - 1] = stack->b[i];
+		i++;
 	}
-	stack->b[i] = tmp;
-	ft_printf("rrb\n");
+	stack->b[i - 1] = tmp;
+	if (print == OPT)
+		ft_printf("rb\n");
 }
 
-void	ft_rrr(t_stacks *stack)
+void	ft_rr(t_stacks *stack, int print)
 {
 	int	tmp;
 	int	i;
 
-	i = stack->size_a - 1;
+	i = 0;
 	tmp = stack->a[i];
-	while (i)
-	{
-		stack->a[i] = stack->a[i - 1];
-		i--;
-	}
-	stack->a[i] = tmp;
-	i = stack->size_b - 1;
+	while (++i < stack->size_a)
+		stack->a[i - 1] = stack->a[i];
+	stack->a[i - 1] = tmp;
+	i = 0;
 	tmp = stack->b[i];
-	while (i)
-	{
-		stack->b[i] = stack->b[i - 1];
-		i--;
-	}
-	stack->b[i] = tmp;
-	ft_printf("rrr\n");
+	while (++i < stack->size_b)
+		stack->b[i - 1] = stack->b[i];
+	stack->b[i - 1] = tmp;
+	if (print == OPT)
+		ft_printf("rr\n");
 }
