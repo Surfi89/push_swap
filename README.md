@@ -95,3 +95,17 @@ Shift down all elements of the stack by one; the last element becomes the first.
 * **`rra`** - reverse rotate stack a.
 * **`rrb`** - reverse rotate stack b.
 * **`rrr`** - `rra` and `rrb` at the same time.
+
+**Used algorithm**
+I used a version of the recursive quick-sort algorithm. Since time complexity was not an issue to take into account, I could use the median as the pivot to make quick sort as efficient as possible. There are two recusive functions that I used to sort the pile (for the two algorithm, the limiting condition is that if the number of elements to be sorted is 3 or less, a different sorting function is used):
+
+quick_sort_a, which sorts the stack as follows :
+Find the median of the len top numbers in stack a (for the first iteration, len is the number of numbers in the list)
+For the len top numbers in the list, push those which are smaller than the median onto stack b
+Use quick_sort_a on the len / 2 elements left in stack a
+Use quick_sort_b on the len / 2 elements pushed on stack b
+quick_sort_b, which works like this:
+Find the median of the len top numbers in stack b (for the first iteration, len is half the number of numbers in the list)
+For the len top numbers of the stack, push those which are higher than the median onto stack a.
+Use quick_sort_a on the len / 2 elements which where pushed onto stack a.
+Use quick_sort_b on the len / 2 elements left in stack b.
