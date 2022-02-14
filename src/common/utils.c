@@ -6,12 +6,11 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 13:53:42 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 14:24:37 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:27:46 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-#include "../libft/inc/libft.h"
 #include "../libft/inc/ft_printf.h"
 #include <stdlib.h>
 
@@ -62,7 +61,7 @@ int	ft_ps_strlen(char **argv)
 	return (i);
 }
 
-int	ft_check_sorted(int *pile, int size, int order)
+int	ft_check_sorted(int *stack, int size, int order)
 {
 	int	i;
 
@@ -71,7 +70,7 @@ int	ft_check_sorted(int *pile, int size, int order)
 		i = 1;
 		while (i < size)
 		{
-			if (pile[i - 1] > pile[i])
+			if (stack[i - 1] > stack[i])
 				return (0);
 			i++;
 		}
@@ -82,7 +81,7 @@ int	ft_check_sorted(int *pile, int size, int order)
 		i = 1;
 		while (i < size)
 		{
-			if (pile[i - 1] < pile[i])
+			if (stack[i - 1] < stack[i])
 				return (0);
 			i++;
 		}

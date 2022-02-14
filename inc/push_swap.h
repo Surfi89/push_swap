@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:21:05 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 20:58:11 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:32:26 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_ps_strlen(char **argv);
 void	ft_error(int *stack);
 int		ft_ps_atoi(char *str, int *stack);
 void	ft_check_repeat(int *stack, int size);
+//Operations
 void	ft_sa(t_stacks *stack, int print);
 void	ft_sb(t_stacks *stack, int print);
 void	ft_ss(t_stacks *stack, int print);
@@ -42,12 +43,14 @@ void	ft_rrb(t_stacks *stack, int print);
 void	ft_rrr(t_stacks *stack, int print);
 void	ft_pb(t_stacks *stack, int print);
 void	ft_pa(t_stacks *stack, int print);
+//Sortage
 int		ft_sort(t_stacks *stack, int size);
 int		ft_check_sorted(int *pile, int size, int order);
 void	ft_sort_three_a(t_stacks *s);
 void	ft_sort_tmp(int *tmp_stack, int size);
-int		ft_quicksort_a(t_stacks *stack, int len);
-int		ft_quicksort_b(t_stacks *stack, int len);
+//Quicksort
+int		ft_quicksort_a(t_stacks *stack, int len, int cnt);
+int		ft_quicksort_b(t_stacks *stack, int len, int cnt);
 void		ft_quicksort_3(t_stacks *stack, int len);
 int		ft_sort_small_b(t_stacks *stack, int len);
 int		ft_get_mediane(int *pivot, int *stack, int size);

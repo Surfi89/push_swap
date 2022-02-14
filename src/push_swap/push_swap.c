@@ -6,13 +6,12 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:03:08 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 21:16:01 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:34:50 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include "../libft/inc/libft.h"
-#include "../libft/inc/ft_printf.h"
 #include <stdlib.h>
 
 void	ft_push_swap(char **argv)

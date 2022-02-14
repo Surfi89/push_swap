@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/13 21:22:34 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/13 23:46:07 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MAND_FILES	=	push_swap sortage quicksort
 COMM_DIR	=	common/
 COMM_FILES	=	swap_moves rotation_moves rev_rot_moves push_moves utils
 BONUS_DIR	=	bonus/
-BONUS_FILES	=	bonus_checker bonus_print_stacks bonus_utils
+BONUS_FILES	=	checker bonus_utils
 
 SRC_FILES	=	$(addprefix $(PSW_DIR), $(MAND_FILES))
 COM_FILES	=	$(addprefix $(COMM_DIR), $(COMM_FILES))

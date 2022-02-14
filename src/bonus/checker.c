@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_checker.c                                    :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 19:03:10 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 21:19:37 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 01:13:23 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	ft_checker(t_stacks *stack)
 		opt = get_next_line(0);
 		if (ft_strcmp(opt, "\n"))
 		{
-			if (ft_check_sorted(stack->a, stack->size_a, ASCENDING))
+			if (ft_check_sorted(stack->a, stack->size_a, ASCENDING)
+				&& stack->size_b == 0)
 				ft_printf("\033[0;32mOK\n");
 			else
 				ft_printf("\033[0;31mK0\n");
+			free(stack->a);
 			free(stack->b);
 			exit (1);
 		}
@@ -66,7 +68,7 @@ int	main(int argc, char **argv)
 		if (argc == 2)
 			argv = ft_split(*argv, ' ');
 		stack.a = ft_check_errors(argv);
-		stack.size_a = argc - 1;
+		stack.size_a = ft_ps_strlen(argv);
 		ft_checker_instructions(&stack);
 		stack.b = malloc(stack.size_a * sizeof(int));
 		if (!stack.b)

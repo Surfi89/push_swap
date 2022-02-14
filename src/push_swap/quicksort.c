@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:50:45 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 15:28:44 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:20:00 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,10 @@ int	ft_get_mediane(int *pivot, int *stack, int size)
 	return (1);
 }
 
-int	ft_quicksort_a(t_stacks *stack, int len)
+int	ft_quicksort_a(t_stacks *stack, int len, int cnt)
 {
 	int	pivot;
 	int	items;
-	int	pushed_under;
 	
 	if (ft_check_sorted(stack->a, len, ASCENDING) == 1)
 		return (1);
@@ -105,31 +104,28 @@ int	ft_quicksort_a(t_stacks *stack, int len)
 		ft_quicksort_3(stack, len);
 		return (1);
 	}
-	pushed_under = 0;
-	if (!pushed_under && !ft_get_mediane(&pivot, stack->a, len))
+	if (!cnt && !ft_get_mediane(&pivot, stack->a, len))
 		return (0);
 	while (len != items / 2 + items % 2)
 	{
 		if (stack->a[0] < pivot && (len--))
 			ft_pb(stack, OPT);
-		else if (++pushed_under)
+		else if (++cnt)
 			ft_ra(stack, OPT);
 	}
-	while (items / 2 + items % 2 != stack->size_a && pushed_under--)
+	while (items / 2 + items % 2 != stack->size_a && cnt--)
 		ft_rra(stack, OPT);
-	return (ft_quicksort_a(stack, items / 2 + items % 2)
-		&& ft_quicksort_b(stack, items / 2));
+	return (ft_quicksort_a(stack, items / 2 + items % 2, 0)
+		&& ft_quicksort_b(stack, items / 2, 0));
 	return (1);
 }
 
-int	ft_quicksort_b(t_stacks *stack, int len)
+int	ft_quicksort_b(t_stacks *stack, int len, int cnt)
 {
 	int	pivot;
 	int	items;
-	int	pushed;
 
-	pushed = 0;
-	if (!pushed && ft_check_sorted(stack->b, len, DESCENDING) == 1)
+	if (!cnt && ft_check_sorted(stack->b, len, DESCENDING) == 1)
 		while (len--)
 			ft_pa(stack, OPT);
 	if (len <= 3)
@@ -144,11 +140,11 @@ int	ft_quicksort_b(t_stacks *stack, int len)
 	{
 		if (stack->b[0] >= pivot && len--)
 			ft_pa(stack, OPT);
-		else if (++pushed)
+		else if (++cnt)
 			ft_rb(stack, OPT);
 	}
-	while (items / 2 != stack->size_b && pushed--)
+	while (items / 2 != stack->size_b && cnt--)
 		ft_rrb(stack, OPT);
-	return (ft_quicksort_a(stack, items / 2 + items % 2)
-		&& ft_quicksort_b(stack, items / 2));
+	return (ft_quicksort_a(stack, items / 2 + items % 2, 0)
+		&& ft_quicksort_b(stack, items / 2, 0));
 }

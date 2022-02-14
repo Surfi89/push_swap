@@ -6,12 +6,11 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 21:16:45 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/13 23:29:35 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-#include <stdlib.h>
 
 void	ft_sort_tmp(int *tmp_stack, int size)
 {
@@ -66,7 +65,7 @@ int	ft_sort(t_stacks *stack, int size)
 		else if (size == 3)
 			ft_sort_three_a(stack);
 		else
-			ft_quicksort_a(stack, size);
+			ft_quicksort_a(stack, size, 0);
 	}
 	return (0);
 }
