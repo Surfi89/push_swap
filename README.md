@@ -63,6 +63,7 @@ $ ./push_swap $ARG
 
 where `$ARG` is a space separated list of integers, e.g. `ARG="1 5 2 4 3"`
 
+
 ### Actions
 
 **PUSH**
@@ -96,17 +97,33 @@ Shift down all elements of the stack by one; the last element becomes the first.
 * **`rrb`** - reverse rotate stack b.
 * **`rrr`** - `rra` and `rrb` at the same time.
 
+
 **USED ALGORITHM**
 
-I used a version of the recursive quick-sort algorithm. Since time complexity was not an issue to take into account, I could use the median as the pivot to make quick sort as efficient as possible. There are two recusive functions that I used to sort the pile (for the two algorithm, the limiting condition is that if the number of elements to be sorted is 3 or less, a different sorting function is used):
+I used a recursive quick-sort algorithm with the median as the pivot to make quick sort efficient.
+If the number of elements to be sorted is 3 or less, a different sorting function is used.
+There are two recusive functions to sort the stacks:
 
-quick_sort_a, which sorts the stack as follows :
-Find the median of the len top numbers in stack a (for the first iteration, len is the number of numbers in the list)
-For the len top numbers in the list, push those which are smaller than the median onto stack b
-Use quick_sort_a on the len / 2 elements left in stack a
-Use quick_sort_b on the len / 2 elements pushed on stack b
-quick_sort_b, which works like this:
-Find the median of the len top numbers in stack b (for the first iteration, len is half the number of numbers in the list)
-For the len top numbers of the stack, push those which are higher than the median onto stack a.
-Use quick_sort_a on the len / 2 elements which where pushed onto stack a.
-Use quick_sort_b on the len / 2 elements left in stack b.
+**quick_sort_a**, sorts the stack as follows :
+1. Find the median of the `len` top numbers in Stack A (for the first iteration, len top numbers are the number of numbers in the list).
+2. From now on, the median will be known as pivot.
+3. From the `len` top numbers in the list, push those which are smaller than the pivot onto Stack B.
+4.Use quick_sort_a on the `len / 2` elements left in Stack A.
+  Use quick_sort_b on the `len / 2` elements pushed on Stack B.
+
+**quick_sort_b**, works like this:
+1. Find the median of the `len` top numbers in Stack B (for the first iteration, len top numbers are half the number of numbers in the list)
+2. For the `len` top numbers of the stack, push those which are higher than the pivot onto Stack A.
+3. Use quick_sort_a on the `len / 2` elements which where pushed onto Stack A.
+   Use quick_sort_b on the `len / 2` elements left in Stack B.
+   
+ ## 📋 Testing
+
+You can use this third party testers to fully test the project:
+
+* [SimonCROS/push_swap_complexity_tester](https://github.com/SimonCROS/push_swap_tester)
+* [laisarena/complete_push_swap_tester](https://github.com/laisarena/push_swap_tester)
+
+And a useful to visualize the movements:
+
+* [o-reo/push_swap_visualizaer](https://github.com/o-reo/push_swap_visualizer)
