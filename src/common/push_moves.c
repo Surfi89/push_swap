@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:55:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/14 02:42:38 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:25:23 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	ft_pb(t_stacks *stack, int print)
 			ft_printf("pb\n");
 	}
 	else
+	{
 		if (print == STACK)
 			ft_printf("Nothing done. Stack A is empty.\n");
 		return ;
+	}
 }
 
 void	ft_pa(t_stacks *stack, int print)
@@ -56,7 +58,9 @@ void	ft_pa(t_stacks *stack, int print)
 			ft_printf("pa\n");
 	}
 	else
+	{
 		if (print == STACK)
 			ft_printf("Nothing done. Stack B is empty.\n");
 		return ;
+	}
 }

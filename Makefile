@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 12:21:47 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/13 23:46:07 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/14 12:42:48 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ ECHO		= echo -e
 DEF_COLOR	=	\033[0;39m
 ORANGE		=	\033[0;33m
 GRAY		=	\033[0;90m
-RED		=	\033[0;91m
+RED			=	\033[0;91m
 GREEN		=	\033[1;92m
 YELLOW		=	\033[1;93m
 BLUE		=	\033[0;94m
@@ -61,34 +61,35 @@ OBJF		=	.cache_exists
 start:
 			@$(ECHO) -n "$(YELLOW)[Dependencies]:\t$(DEF_COLOR)"
 			@$(ECHO) -n "$(RED)[$(DEF_COLOR)"
-			@make -s all
+			@make all
 
 all:		$(NAME)
-			
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) $(COBJ) $(OBJF)
 			@$(ECHO) -n "$(RED)]$(DEF_COLOR)"
 			@$(ECHO) -n "$(GREEN) => 100%$(DEF_COLOR)\n"
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@$(ECHO) -n "$(YELLOW)[$(NAME)]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(COMMON) $(HEADER) libft.a -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ) $(COBJ) $(HEADER) libft.a -o $(NAME)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(OBJF)
 			@$(ECHO) -n "$(ORANGE)=$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(FSANITIZE) $(HEADER) -c $< -o $@
+			@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)$(PSW_DIR)
 			@mkdir -p $(OBJ_DIR)$(COMM_DIR)
 			@mkdir -p $(OBJ_DIR)$(BONUS_DIR)
+			@touch $(OBJF)
 
 clean:
 			@$(RM) -r $(OBJ_DIR)
 			@make clean -C $(LIBFT)
 			@$(ECHO) -n "$(BLUE)[push_swap]:\tobject files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
+			@$(RM) $(OBJF)
 
 fclean:		clean
 			@$(RM) $(NAME)
@@ -107,17 +108,17 @@ re:			fclean all
 bonus:
 			@$(ECHO) -n "$(YELLOW)[Dependencies]:\t$(DEF_COLOR)"
 			@$(ECHO) -n "$(RED)[$(DEF_COLOR)"
-			@make -s allbonus
+			@make allbonus
 
 allbonus:		$(BNAME)
 
-$(BNAME):	$(BOBJ)
+$(BNAME):	$(BOBJ) $(COBJ)
 			@$(ECHO) -n "$(RED)]$(DEF_COLOR)"
 			@$(ECHO) -n "$(GREEN) => 100%$(DEF_COLOR)\n"
 			@make -C $(LIBFT)
 			@cp libft/libft.a .
 			@$(ECHO) -n "$(YELLOW)[$(BNAME)]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(FSANITIZE) $(BSRC) $(COMMON) $(HEADER) libft.a -o $(BNAME)
+			@$(CC) $(CFLAGS) $(BSRC) $(COMMON) $(HEADER) libft.a -o $(BNAME)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 norm:

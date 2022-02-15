@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 23:29:35 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:08:03 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ int	ft_sort(t_stacks *stack, int size)
 			ft_quicksort_a(stack, size, 0);
 	}
 	return (0);
+}
+
+int	ft_push(t_stacks *stack, int len, int operation)
+{
+	if (operation == 0)
+		ft_pb(stack, OPT);
+	else
+		ft_pa(stack, OPT);
+	len--;
+	return (len);
 }

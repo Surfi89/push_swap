@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:03:08 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 23:34:50 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:24:46 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 void	ft_push_swap(char **argv)
 {
 	t_stacks	stack;
-	int	size;
-	int	i;
+	int			size;
+	int			i;
 
 	i = -1;
 	size = ft_ps_strlen(argv);

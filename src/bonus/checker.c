@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 19:03:10 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/14 01:13:23 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:12:19 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_checker(t_stacks *stack)
 			free(stack->b);
 			exit (1);
 		}
-		if (!ft_check_opt(opt))
+		if (!ft_check_opt(opt, stack))
 		{
 			free(stack->a);
 			free(stack->b);

@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/13 20:17:47 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/14 12:42:52 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ OBJF		=	.cache_exists
 start:
 			@echo -e -n "$(YELLOW)[LIBFT]:\t$(DEF_COLOR)"
 			@echo -e -n "$(RED)[$(DEF_COLOR)"
-			@make -s all
+			@make all
 
 all:		$(NAME)
 
@@ -109,6 +109,8 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(FTLST_DIR)
 			@mkdir -p $(OBJ_DIR)$(GNL_DIR)
 			@mkdir -p $(OBJ_DIR)$(FTPRINTF_DIR)
+			@touch $(OBJF)
+
 clean:
 			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(OBJF)

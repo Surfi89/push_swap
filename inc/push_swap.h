@@ -6,14 +6,14 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:21:05 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/13 23:32:26 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:09:15 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct	s_stacks
+typedef struct s_stacks
 {
 	int	*a;
 	int	*b;
@@ -51,16 +51,17 @@ void	ft_sort_tmp(int *tmp_stack, int size);
 //Quicksort
 int		ft_quicksort_a(t_stacks *stack, int len, int cnt);
 int		ft_quicksort_b(t_stacks *stack, int len, int cnt);
-void		ft_quicksort_3(t_stacks *stack, int len);
+void	ft_quicksort_3(t_stacks *stack, int len);
 int		ft_sort_small_b(t_stacks *stack, int len);
+int		ft_push(t_stacks *stack, int len, int operation);
 int		ft_get_mediane(int *pivot, int *stack, int size);
 //Bonus
-int	*ft_check_errors(char **argv);
+int		*ft_check_errors(char **argv);
 void	ft_checker_instructions(t_stacks *stack);
 void	ft_checker_start(t_stacks *stack);
 char	*get_next_line(int fd);
 void	ft_checker(t_stacks *stack);
-int	ft_check_opt(char *opt);
+int		ft_check_opt(char *opt, t_stacks *stack);
 void	ft_opt(t_stacks *stack, char *opt);
 void	ft_print_stacks(t_stacks *stack);
 

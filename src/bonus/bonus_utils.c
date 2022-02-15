@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:17:10 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/14 02:41:25 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:12:36 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../libft/inc/ft_printf.h"
 #include <stdlib.h>
 
-int	ft_check_opt(char *opt)
+int	ft_check_opt(char *opt, t_stacks *stack)
 {
 	if (ft_strcmp(opt, "sa\n") || ft_strcmp(opt, "sb\n")
 		|| ft_strcmp(opt, "ss\n") || ft_strcmp(opt, "ra\n")
@@ -24,6 +24,12 @@ int	ft_check_opt(char *opt)
 		|| ft_strcmp(opt, "pa\n") || ft_strcmp(opt, "pb\n")
 		|| ft_strcmp(opt, "rr\n"))
 		return (1);
+	else if (!opt
+		&& ft_check_sorted(stack->a, stack->size_a, ASCENDING))
+	{		
+		ft_printf("\033[0;32mOK\n");
+		return (0);
+	}
 	else
 	{
 		ft_printf("Error\n");
@@ -86,7 +92,7 @@ void	ft_print_stacks(t_stacks *stack)
 
 void	ft_checker_start(t_stacks *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	ft_printf("------------------------------------------------");

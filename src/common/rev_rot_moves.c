@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 09:53:15 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/14 02:44:20 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:26:43 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,8 @@ void	ft_rrr(t_stacks *stack, int print)
 	stack->a[i] = tmp;
 	i = stack->size_b - 1;
 	tmp = stack->b[i];
-	while (i)
-	{
+	while (i--)
 		stack->b[i] = stack->b[i - 1];
-		i--;
-	}
 	stack->b[i] = tmp;
 	if (print == OPT)
 		ft_printf("rrr\n");
