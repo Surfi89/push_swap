@@ -10,6 +10,7 @@
 
 # Executables
 *.out
+*.cache_exists
 
 # Temp files
 *.swp
